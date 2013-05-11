@@ -1,25 +1,27 @@
-<h1>Listing statuses</h1>
+<div class="page-header">
+ <h1> Treebook Statuses </h1>
+</div>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Content</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
-<% @statuses.each do |status| %>
-  <tr>
-    <td><%= status.name %></td>
-    <td><%= status.content %></td>
-    <td><%= link_to 'Show', status %></td>
-    <td><%= link_to 'Edit', edit_status_path(status) %></td>
-    <td><%= link_to 'Destroy', status, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+<%= link_to "Post a new status", new_status_path, class: "btn" %> <!-- This link was added after the jquery and css hovers -->
 
-<br />
 
-<%= link_to 'New Status', new_status_path %>
+
+
+
+<% @statuses.each do |status| %> <!-- This is a loop, where we have the variable @statuses with  
+                             ALL of our status. With "do" I am telling it to pass status by status to the variable status -->
+
+   <div class="status">
+      <strong><%= status.name %></strong> <!-- status.name is a method -->
+      <p><%= status.content %></p>
+      <div class="meta">
+        <%= link_to time_ago_in_words(status.created_at) + " ago", status %><!-- Initially i had "show" but i changed it for a 
+                                      method found at api.rubyonrails.org -->
+        <span class="admin">
+          |<%= link_to "Edit", edit_status_path(status) %>|
+          <%= link_to "Delete", status, method: :delete, data: {confirm: "Are you sure you want to delete this status?"} %>
+        </span>  
+      </div> <!-- end div meta -->
+   </div> <!-- end div status -->
+<% end %>  <!-- end of loop -->                           
