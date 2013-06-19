@@ -13,7 +13,7 @@
                              ALL of our status. With "do" I am telling it to pass status by status to the variable status -->
 
    <div class="status">
-      <strong><%= status.name %></strong> <!-- status.name is a method -->
+      <strong><%= status.user.full_name %></strong> <!-- status.name is a method -->
       <p><%= status.content %></p>
       <div class="meta">
         <%= link_to time_ago_in_words(status.created_at) + " ago", status %><!-- Initially i had "show" but i changed it for a 

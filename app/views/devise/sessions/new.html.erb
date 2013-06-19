@@ -1,17 +1,28 @@
-<h2>Sign in</h2>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+ 
+      <div class="row"> <!-- 1) I added this class from bootstrap in the video adding styling. This comes from the Scaffolding/grid bootstrap -->
+      	<div class="span4"><!-- 2) This span is to make a grid, so i am using 4 columns here -->
+			<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), html: {class: "well"}) do |f| %>
+                         <!-- 4) He added the html: {class} to get the gray square around the fields. This class comes from bootstrap -->
+			  
+            <fieldset> <!-- 5) He grouped the fields in a set, and moved the H2 tag of sign up to the same set of fields. That is why is using the tab "legend" to add up a tittle to the set of fields -->
+            	<legend> Sign In </legend>
+			  <%= f.input :email %>
+			  <%= f.input :password %>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
+			  <% if devise_mapping.rememberable? -%>
+			    <div><%= f.input :remember_me, as: :boolean %></div>
+			  <% end -%>
 
-  <div><%= f.submit "Sign in" %></div>
-<% end %>
+			  <div><%= f.button :submit, "Sign in" %></div> <!--6) He added f.button :submit -->
+			</fieldset>
+			
+			<% end %>
 
-<%= render "devise/shared/links" %>
+			<%= render "devise/shared/links" %>
+		</div>
+		<div class="span8"> <!-- 3) I have to use a span of 8 to complete the 12 columns of the grid -->
+			<h3>Signing in is easy..</h3>
+	   </div>
+	</div>
